@@ -1,6 +1,6 @@
 [Unit]
 Description=Naemon plugins in Docker
-After=docker.Service
+After=docker.service
 Requires=docker.service
 
 [Service]
