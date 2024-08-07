@@ -1,0 +1,9 @@
+[Unit]
+Description=naemon plugins docker
+
+[Service]
+ExecStart=docker run --tty --rm --name naemon-plugins --network host naemon-plugins
+ExecStop=docker container stop naemon-plugins
+
+[Install]
+WantedBy=multi-user.target
