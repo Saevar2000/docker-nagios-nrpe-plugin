@@ -1,1 +1,1 @@
-# docker-nagios-nrpe-plugin
+# Old naemon plugins in docker
