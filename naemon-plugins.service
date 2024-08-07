@@ -1,9 +1,14 @@
 [Unit]
-Description=naemon plugins docker
+Description=Naemon plugins in Docker
+After=docker.Service
+Requires=docker.service
 
 [Service]
-ExecStart=docker run --tty --rm --name naemon-plugins --network host naemon-plugins
-ExecStop=docker container stop naemon-plugins
+ExecStartPre=-/usr/bin/docker container kill naemon-plugins
+ExecStartPre=-/usr/bin/docker container rm naemon-plugins
+ExecStartPre=/usr/bin/docker pull ghcr.io/saevar2000/naemon-plugins:master
+ExecStart=/usr/bin/docker run --tty --rm --name naemon-plugins --network host ghcr.io/saevar2000/naemon-plugins:master
+ExecStop=/usr/bin/docker container stop naemon-plugins
 
 [Install]
 WantedBy=multi-user.target
